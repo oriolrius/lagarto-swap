@@ -15,6 +15,7 @@ Oct 22, 2013 - release #1
 * "out" endpoints values are read from MQTT server with topic: /location/actions/id, example: /greenhouse01/actions/2.12.0
 * plugin system to manipulate endpoint messages coming or going to MQTT network
 * MQTT parameters in lagarto.xml::
+
                 <mqtt>
                     <host>localhost</host>
                     <port>1883</port>
@@ -22,6 +23,7 @@ Oct 22, 2013 - release #1
                     <plugin>timestamp_plugin.timestamp.TimestampPlugin</plugin>
                     <plugin>timestamp_plugin.roundtime.RoundTime</plugin>
                 </mqtt>
+
 * Plugin: TimeStamp, converts time stamp format and supports TTL. If TTL is ended the messages i dropped.
 * Plugin: RoundTime, converts time stamp values to rounded values, example: if you have a reading at 12:11:03 it can be rounded to 12:11:00 or to 12:00:00 or 12:15:00 it depends on how you want to round the time stamp
 
