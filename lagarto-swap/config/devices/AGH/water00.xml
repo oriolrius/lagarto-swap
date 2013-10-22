@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<device>
+  <developer>AGH</developer>
+  <product>water00</product>
+  <pwrdownmode>true</pwrdownmode>
+  <regular>
+    <reg name="Voltage supply" id="11">
+      <endpoint name="Voltage" type="num" dir="inp">
+        <size>2</size>
+        <units>
+          <unit name="V" factor="0.001" offset="0"/>
+        </units>
+      </endpoint>
+    </reg>
+    <reg name="Water Temperature" id="12">
+      <endpoint name="wat_temp" type="num" dir="inp">
+        <position>0</position>
+        <size>2</size>
+        <units>
+          <unit name="C" factor="0.01" offset="0"/>
+        </units>
+      </endpoint>
+    </reg>
+	<reg name="Water Pression" dir="13">
+		<endpoint name="wat_pres" type="num" dir="inp">
+			<position>0</position>
+			<size>2</size>
+			<units>
+				<unit name="kPa" factor="0.286" offset="0" />
+			</units>
+		</endpoint>
+	</reg>
+  </regular>
+</device>

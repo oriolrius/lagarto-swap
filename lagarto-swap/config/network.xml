@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<network>
+        <location>greenhouse01</location>
+	<channel>0</channel>
+	<netid>0xb547</netid>
+	<address>1</address>
+	<security>0</security>
+</network>

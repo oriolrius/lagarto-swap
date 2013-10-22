@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<lagarto>
+	<procname>Lagarto-SWAP</procname>
+	<comms>
+		<address>10.2.0.22</address>
+		<!--<broadcast>tcp://127.0.0.1:5001</broadcast>-->
+		<httpport>8001</httpport>
+                <!-- http_disable_set_value>True</http_disable_set_value -->
+                <mqtt>
+                    <host>localhost</host>
+                    <port>1883</port>
+                    <client_id>test</client_id>
+                    <plugin>timestamp_plugin.timestamp.TimestampPlugin</plugin>
+		    <plugin>timestamp_plugin.roundtime.RoundTime</plugin>
+                </mqtt>
+	</comms>
+</lagarto>

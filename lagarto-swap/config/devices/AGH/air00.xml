@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<device>
+  <developer>AGH</developer>
+  <product>air00</product>
+  <pwrdownmode>true</pwrdownmode>
+  <regular>
+	<reg name="Voltage supply" id="11">
+      <endpoint name="Voltage" type="num" dir="inp">
+        <size>2</size>
+        <units>
+          <unit name="V" factor="0.001" offset="0"/>
+        </units>
+      </endpoint>
+    </reg>
+    <reg name="Humidity and Temperature" id="12">
+      <endpoint name="air_temp" type="num" dir="inp">
+        <position>0</position>
+        <size>2</size>
+        <units>
+          <unit name="C" factor="0.1" offset="-50"/>
+        </units>
+      </endpoint>
+      <endpoint name="air_hum" type="num" dir="inp">
+        <position>2</position>
+        <size>2</size>
+        <units>
+          <unit name="%" factor="0.1" offset="0"/>
+        </units>
+      </endpoint>
+    </reg>
+	<reg name="Radiation" id="13">
+		<endpoint name="PAR" type="num" dir="inp">
+			<position>0</position>
+			<size>2</size>
+			<units>
+				<unit name="u" factor="5" offset="0"/>
+			</units>
+		</endpoint>
+	</reg>
+        <reg name="TxInterval" id="14">
+                <endpoint name="tx_interval" type="num" dir="out">
+                        <position>0</position>
+                        <size>2</size>
+                </endpoint>
+        </reg>
+  </regular>
+</device>

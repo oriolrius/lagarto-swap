@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<device>
+        <developer>OriolRius</developer>
+        <product>heater</product>
+        <pwrdownmode>false</pwrdownmode>
+        <regular>
+                <reg name="temp" id="11">
+                        <endpoint name="temp" type="num" dir="inp">
+                                <size>2.0</size>
+                                <units>
+                                        <unit name="C" factor="0.01" offset="-5"/>
+                                </units>
+                        </endpoint>
+                </reg>
+                <reg name="relay" id="12">
+                        <endpoint name="relay0" type="bin" dir="out">
+                                <size>0.1</size>
+                                <units>
+                                </units>
+                        </endpoint>
+                </reg>
+        </regular>
+</device>
+

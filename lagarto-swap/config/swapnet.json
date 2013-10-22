@@ -1,0 +1,297 @@
+{
+  "network": {
+    "name": "SWAP", 
+    "motes": [
+      {
+        "registers": [
+          {
+            "endpoints": [
+              {
+                "direction": "out", 
+                "name": "Binary_0", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "off", 
+                "location": "greenhouse01", 
+                "type": "bin", 
+                "id": "17.11.0"
+              }, 
+              {
+                "direction": "out", 
+                "name": "Binary_1", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "off", 
+                "location": "greenhouse01", 
+                "type": "bin", 
+                "id": "17.11.1"
+              }, 
+              {
+                "direction": "out", 
+                "name": "Binary_2", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "off", 
+                "location": "greenhouse01", 
+                "type": "bin", 
+                "id": "17.11.2"
+              }, 
+              {
+                "direction": "out", 
+                "name": "Binary_3", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "off", 
+                "location": "greenhouse01", 
+                "type": "bin", 
+                "id": "17.11.3"
+              }, 
+              {
+                "direction": "out", 
+                "name": "Binary_4", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "off", 
+                "location": "greenhouse01", 
+                "type": "bin", 
+                "id": "17.11.4"
+              }, 
+              {
+                "direction": "out", 
+                "name": "Binary_5", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "off", 
+                "location": "greenhouse01", 
+                "type": "bin", 
+                "id": "17.11.5"
+              }, 
+              {
+                "direction": "out", 
+                "name": "Binary_6", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "off", 
+                "location": "greenhouse01", 
+                "type": "bin", 
+                "id": "17.11.6"
+              }, 
+              {
+                "direction": "out", 
+                "name": "Binary_7", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "off", 
+                "location": "greenhouse01", 
+                "type": "bin", 
+                "id": "17.11.7"
+              }
+            ], 
+            "id": 11, 
+            "name": "Binary outputs"
+          }, 
+          {
+            "endpoints": [
+              {
+                "direction": "out", 
+                "name": "PWM_output_0", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "0", 
+                "location": "greenhouse01", 
+                "type": "num", 
+                "id": "17.12.0"
+              }, 
+              {
+                "direction": "out", 
+                "name": "PWM_output_1", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "0", 
+                "location": "greenhouse01", 
+                "type": "num", 
+                "id": "17.12.1"
+              }, 
+              {
+                "direction": "out", 
+                "name": "PWM_output_2", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "0", 
+                "location": "greenhouse01", 
+                "type": "num", 
+                "id": "17.12.2"
+              }, 
+              {
+                "direction": "out", 
+                "name": "PWM_output_3", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "0", 
+                "location": "greenhouse01", 
+                "type": "num", 
+                "id": "17.12.3"
+              }
+            ], 
+            "id": 12, 
+            "name": "PWM outputs"
+          }
+        ], 
+        "pcode": "0000000100000007", 
+        "address": 17, 
+        "name": "Binary/PWM output module", 
+        "manufacturer": "panStamp"
+      }, 
+      {
+        "registers": [
+          {
+            "endpoints": [
+              {
+                "direction": "inp", 
+                "name": "soil_temp", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "67.5", 
+                "location": "greenhouse01", 
+                "units": [
+                  "C"
+                ], 
+                "type": "num", 
+                "id": "48.11.0", 
+                "unit": "C"
+              }
+            ], 
+            "id": 11, 
+            "name": "Soil Temperature"
+          }
+        ], 
+        "pcode": "0000001F00000003", 
+        "address": 48, 
+        "name": "soil00", 
+        "manufacturer": "AGH"
+      }, 
+      {
+        "registers": [
+          {
+            "endpoints": [
+              {
+                "direction": "inp", 
+                "name": "Voltage", 
+                "timestamp": "22 Oct 2013 13:48:40", 
+                "value": "1.115", 
+                "location": "greenhouse01", 
+                "units": [
+                  "V"
+                ], 
+                "type": "num", 
+                "id": "2.11.0", 
+                "unit": "V"
+              }
+            ], 
+            "id": 11, 
+            "name": "Voltage supply"
+          }, 
+          {
+            "endpoints": [
+              {
+                "direction": "inp", 
+                "name": "air_temp", 
+                "timestamp": "22 Oct 2013 13:48:40", 
+                "value": "24.7", 
+                "location": "greenhouse01", 
+                "units": [
+                  "C"
+                ], 
+                "type": "num", 
+                "id": "2.12.0", 
+                "unit": "C"
+              }, 
+              {
+                "direction": "inp", 
+                "name": "air_hum", 
+                "timestamp": "22 Oct 2013 13:48:40", 
+                "value": "68.2", 
+                "location": "greenhouse01", 
+                "units": [
+                  "%"
+                ], 
+                "type": "num", 
+                "id": "2.12.1", 
+                "unit": "%"
+              }
+            ], 
+            "id": 12, 
+            "name": "Humidity and Temperature"
+          }, 
+          {
+            "endpoints": [
+              {
+                "direction": "inp", 
+                "name": "PAR", 
+                "timestamp": "22 Oct 2013 13:48:40", 
+                "value": "270", 
+                "location": "greenhouse01", 
+                "units": [
+                  "u"
+                ], 
+                "type": "num", 
+                "id": "2.13.0", 
+                "unit": "u"
+              }
+            ], 
+            "id": 13, 
+            "name": "Radiation"
+          }, 
+          {
+            "endpoints": [
+              {
+                "direction": "out", 
+                "name": "tx_interval", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "60", 
+                "location": "greenhouse01", 
+                "type": "num", 
+                "id": "2.14.0"
+              }
+            ], 
+            "id": 14, 
+            "name": "TxInterval"
+          }
+        ], 
+        "pcode": "0000001F00000001", 
+        "address": 2, 
+        "name": "air00", 
+        "manufacturer": "AGH"
+      }, 
+      {
+        "registers": [
+          {
+            "endpoints": [
+              {
+                "direction": "inp", 
+                "name": "temp", 
+                "timestamp": "22 Oct 2013 13:48:58", 
+                "value": "21.29", 
+                "location": "greenhouse01", 
+                "units": [
+                  "C"
+                ], 
+                "type": "num", 
+                "id": "16.11.0", 
+                "unit": "C"
+              }
+            ], 
+            "id": 11, 
+            "name": "temp"
+          }, 
+          {
+            "endpoints": [
+              {
+                "direction": "out", 
+                "name": "relay0", 
+                "timestamp": "22 Oct 2013 13:46:26", 
+                "value": "off", 
+                "location": "greenhouse01", 
+                "type": "bin", 
+                "id": "16.12.0"
+              }
+            ], 
+            "id": 12, 
+            "name": "relay"
+          }
+        ], 
+        "pcode": "0000004800000001", 
+        "address": 16, 
+        "name": "heater", 
+        "manufacturer": "OriolRius"
+      }
+    ]
+  }
+}
