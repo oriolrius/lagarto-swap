@@ -14,7 +14,7 @@ Oct 22, 2013 - release #1
 * "inp" endpoints are published in a MQTT server with topic: /location/measures/id, example: /greenhouse01/measures/2.11.0
 * "out" endpoints values are read from MQTT server with topic: /location/actions/id, example: /greenhouse01/actions/2.12.0
 * plugin system to manipulate endpoint messages coming or going to MQTT network
-* MQTT parameters in lagarto.xml:
+* MQTT parameters in lagarto.xml::
                 <mqtt>
                     <host>localhost</host>
                     <port>1883</port>
