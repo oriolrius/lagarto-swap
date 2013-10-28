@@ -2,6 +2,14 @@
 Oriol Rius and team changes on Lagarto SWAP
 ===========================================
 
+Oct 28, 2013 - release #2
+-------------------------
+
+**Features:**
+
+* only send messages to SWAP network when devices are awake, it's a good idea to use 'retained' messages for MQTT if you want to deliver messages when device gets RF sync mode.
+
+
 Oct 22, 2013 - release #1
 -------------------------
 
