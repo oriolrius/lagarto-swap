@@ -77,10 +77,10 @@ class SwapManager(SwapInterface, LagartoServer):
         
         @param mote: Mote having changed
         """
-        if self._print_swap == True:
-            logging.debug("Mote with address " + str(mote.address) + " switched to \"" + \
+        logging.info("Mote with address " + str(mote.address) + " switched to \"" + \
             SwapState.toString(mote.state) + "\"")
 
+        self.mote_state_changed(mote)
 
     def moteAddressChanged(self, mote):
         """
@@ -91,6 +91,7 @@ class SwapManager(SwapInterface, LagartoServer):
         if self._print_swap == True:
             logging.debug("Mote changed address to " + str(mote.address))
 
+        self.mote_address_changed(mote)
 
     def registerValueChanged(self, register):
         """

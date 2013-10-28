@@ -8,7 +8,7 @@
                         <endpoint name="temp" type="num" dir="inp">
                                 <size>2.0</size>
                                 <units>
-                                        <unit name="C" factor="0.01" offset="-5"/>
+                                        <unit name="C" factor="0.01" offset="0"/>
                                 </units>
                         </endpoint>
                 </reg>

@@ -30,7 +30,7 @@ from lagartoresources import LagartoException, LagartoMessage
 from lagartoresources import LagartoEndpoint
 from lagartomqtt.client import MqttClient
 
-from swap.protocol.SwapDefs import SwapType
+from swap.protocol.SwapDefs import SwapType, SwapState
 
 import httplib
 import threading
@@ -39,6 +39,7 @@ import socket
 import os
 import time
 import datetime
+import logging
 
 try:
     import zmq
@@ -183,9 +184,34 @@ class LagartoServer(LagartoProcess):
         self.publish_lock.acquire()
         try:
             if self.mqtt_client:
-                self.mqtt_client.publish_all_endpoints()
+                self.mqtt_client.subscribe_endpoint(endp)
         finally:
             self.publish_lock.release()
+
+    def mote_state_changed(self, mote):
+        """
+        Broadcast a mote state has changed
+        """
+        if not self.mqtt_client:
+            return # nothing to do
+        if mote.state == SwapState.SYNC:
+            f = self.mqtt_client.subscribe_endpoint
+        elif mote.state == SwapState.RXOFF:
+            f = self.mqtt_client.unsubscribe_endpoint
+        else:
+            return # nothing to do
+
+        for reg in mote.regular_registers:
+            for endp in reg.parameters:
+                self.publish_lock.acquire()
+                try:
+                    f(endp)
+                finally:
+                    self.publish_lock.release()
+
+    def mote_address_changed(self, mote):
+        # nothing to do
+        pass
  
     def publish_status(self, status_data=None):
         """

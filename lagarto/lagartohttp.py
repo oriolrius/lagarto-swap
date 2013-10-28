@@ -39,9 +39,8 @@ class WSGIRequestHandlerLogging(WSGIRequestHandler):
     """
     Override log functions to throw messages via logging module
     """
-    def log_message(self, *args):
-        method_url = args[1]
-        logging.debug(method_url)
+    def log_message(self, format, *args):
+        logging.debug("%s - - [%s] %s\n" % (self.client_address[0], self.log_date_time_string(), format%args))
 
 class LagartoHttpServer(threading.Thread):
     """

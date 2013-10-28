@@ -63,6 +63,9 @@ class MqttClient(threading.Thread):
     }
     """
 
+    # libmosquitto provides thread safe operation.
+    # then we could use the native client function stright for
+ 
     RESUME_TIME = 10  # seconds
 
     @staticmethod
@@ -133,11 +136,25 @@ class MqttClient(threading.Thread):
 
         self._subscribed_topics.append(topic)
 
-        # READ from mosquitto web
-        # libmosquitto provides thread safe operation.
-        # then we could use the native client function stright for
-        logging.debug("MQTT client subscribing at %s" % topic)
+        logging.info("MQTT client subscribing at %s" % topic)
         return self._client.subscribe(topic)
+
+    def unsubscribe(self, endpoint, force=False):
+        """
+        Try to unsubscribe to one endpoint already subscribed at one mqtt channel 
+        """
+        if self._client is None:
+            raise Exception("MQTT client not set, topic cant be unsusbcribed")
+
+        topic = self.get_topic_name(endpoint, "action")
+        if topic not in self._subscribed_topics:
+            return
+
+        self._subscribed_topics.remove(topic)
+
+        logging.info("MQTT client unsubscribing at %s" % topic)
+        return self._client.unsubscribe(topic)
+
 
     def publish(self, endpoint):
         """
@@ -151,7 +168,6 @@ class MqttClient(threading.Thread):
         # libmosquitto provides thread safe operation.
         # then we could use the native client function stright for
         topic = self.get_topic_name(endpoint, "measure")
-        logging.debug("MQTT client publishing at %s msg %s" % (topic,json.dumps(endpoint)))
         return self._client.publish(topic, json.dumps(endpoint))
 
 
@@ -182,17 +198,41 @@ class MqttClient(threading.Thread):
             else:
                 logging.warning("Mqtt received unuknowed swap type direction %s" % direction)
 
-    def publish_all_endpoints(self, force=False):
+    def subscribe_all_endpoints(self, force=False, skip_pwrdwn = True):
         """
-        Publish all endpoints, use force to override older
+        Subscribe all endpoints except they are belonging 
+        at one pwrdwn mote. Use force to override older
         subscriptions
         """
-        # publish at current already knowed endpoints
-        status = self.data_server.get_status(None)
-        for endpoint in status:
-            if endpoint["direction"] == SwapType.OUTPUT:
-                self.subscribe(endpoint, force=force)
- 
+        for mote in self.data_server.network.motes:
+            if skip_pwrdwn and mote.pwrdownmode:
+                logging.info("MQTT Mote %d.%d " % (mote.product_id, mote.manufacturer_id) +\
+                             "is pwrdwn, waiting sync message for subscribe" )
+                continue
+
+            for reg in mote.regular_registers:
+                for endp in reg.parameters:
+                    direction = endp.direction
+                    if direction == SwapType.OUTPUT:
+                        self.subscribe(endp.dumps(), force=force)
+
+    def subscribe_endpoint(self, endpoint, force=False):
+        """
+        Subscribe a endpoint
+        """
+        direction = endpoint.direction
+        if direction == SwapType.OUTPUT:
+            self.subscribe(endpoint.dumps(), force=force)
+        else:
+            logging.info("MQTT subscribe skip INPUT endpoint %s" % endpoint.name)
+
+    def unsubscribe_endpoint(self, endpoint, force=False):
+        """
+        Unsubscribe a endpoint
+        """
+        self.unsubscribe(endpoint.dumps(), force=force)
+
+
     def run(self):
         """
         Run Mqtt client threaded
@@ -205,7 +245,7 @@ class MqttClient(threading.Thread):
         self._client.connect(self.config.host,
                              self.config.port)
 
-        self.publish_all_endpoints()
+        self.subscribe_all_endpoints()
 
         seconds_wait = [ 2**x for x in range(1, 8) ]
         self.running = True
@@ -216,18 +256,18 @@ class MqttClient(threading.Thread):
             if ret != 0:
                 # something is going bad, just try to reconect
                 # after one second, it locks this thread
-                logging.warning("Mqtt connection broken ... reconecting in %d seconds" % seconds_wait[i])
+                logging.warning("MQTT client connection broken ... reconecting in %d seconds" % seconds_wait[i])
                 time.sleep(seconds_wait[i])
                 self._client.reconnect()
                 if (i + 1) < len(seconds_wait):
                     i+=1
             elif i != 0:
-                logging.info("Mqtt connection raised again ....")
+                logging.info("MQTT client connection raised again ....")
                 i = 0
             else:
                 now = datetime.datetime.now()
                 if now > last_resume + datetime.timedelta(0, MqttClient.RESUME_TIME):
-                    resume = "Mqtt msg sent: %d, msg rcv: %d" % (self._msg_sent, self._msg_rcv)
+                    resume = "MQTT msg sent: %d, msg rcv: %d" % (self._msg_sent, self._msg_rcv)
                     last_resume = now
                     logging.info(resume)
                     
